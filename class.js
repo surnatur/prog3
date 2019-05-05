@@ -35,16 +35,16 @@ class Grass extends LivingCreature {
         ];
     }
     
-    chooseCell(ch) {
+    getDirections(ch) {
         this.newDirections();
         return super.chooseCell(ch);
-                }
-
+    }
+ 
 
     mul() {
         this.multiply++;
         if (this.multiply == 4) {
-            var fundCords = this.chooseCell(0);
+            var fundCords = this.getDirections(0);
             var cord = random(fundCords);
             if (cord) {
                 var x = cord[0];
@@ -75,16 +75,15 @@ class Eatgrass extends LivingCreature{
         ];
     }
 
-    chooseCell(ch) {
+    getDirections(ch) {
         this.newDirections();
         return super.chooseCell(ch);
-        }
-            
-
+    }
+ 
 
 
     move() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -98,7 +97,7 @@ class Eatgrass extends LivingCreature{
         }
     }
     eat() {
-        var fundCords = this.chooseCell(1);
+        var fundCords = this.getDirections(1);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -130,7 +129,7 @@ class Eatgrass extends LivingCreature{
         }
     }
     mul() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -171,15 +170,15 @@ class Predator extends LivingCreature {
         ];
     }
 
-    chooseCell(ch) {
+    getDirections(ch) {
         this.newDirections();
         return super.chooseCell(ch);
     }
-
+ 
 
 
     move() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -193,7 +192,7 @@ class Predator extends LivingCreature {
         }
     }
     eat() {
-        var fundCords = this.chooseCell(2);
+        var fundCords = this.getDirections(2);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -225,7 +224,7 @@ class Predator extends LivingCreature {
         }
     }
     mul() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -281,15 +280,15 @@ class Omnivorous extends LivingCreature{
         ];
     }
 
-    chooseCell(ch) {
+    getDirections(ch) {
         this.newDirections();
         return super.chooseCell(ch);
     }
-
+ 
 
 
     move() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -303,8 +302,8 @@ class Omnivorous extends LivingCreature{
         }
     }
     eat() {
-        var fundCords = this.chooseCell(2);
-        var fundCords1 = this.chooseCell(3);
+        var fundCords = this.getDirections(2);
+        var fundCords1 = this.getDirections(3);
         var fundCords2 = fundCords.concat(fundCords1);
         var cord = random(fundCords2);
         if (cord) {
@@ -347,7 +346,7 @@ class Omnivorous extends LivingCreature{
         }
     }
     mul() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -403,15 +402,14 @@ class Alien extends LivingCreature{
         ];
     }
 
-    chooseCell(ch) {
+    getDirections(ch) {
         this.newDirections();
         return super.chooseCell(ch);
     }
 
 
-
     move() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -425,7 +423,7 @@ class Alien extends LivingCreature{
         }
     }
     eat() {
-        var fundCords = this.chooseCell(4);
+        var fundCords = this.getDirections(4);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -457,7 +455,7 @@ class Alien extends LivingCreature{
         }
     }
     mul() {
-        var fundCords = this.chooseCell(0);
+        var fundCords = this.getDirections(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
