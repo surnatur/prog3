@@ -1,9 +1,27 @@
-class Grass {
-    constructor(x, y) {
+class LivingCreature {
+    constructor(x, y, index){
         this.x = x;
         this.y = y;
         this.multiply = 0;
+        this.index = index;
     }
+    chooseCell(ch) {
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
+                if (matrix[y][x] == ch) {
+                    found.push(this.directions[i]);
+                }
+            }   
+        }
+        return found;
+    }
+}
+
+class Grass extends LivingCreature {
+    
     newDirections() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -16,25 +34,17 @@ class Grass {
             [this.x + 1, this.y + 1]
         ];
     }
-    getDirections(t) {
+    
+    chooseCell(ch) {
         this.newDirections();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
+        return super.chooseCell(ch);
                 }
-            }
-        }
-        return found;
-    }
+
 
     mul() {
         this.multiply++;
         if (this.multiply == 4) {
-            var fundCords = this.getDirections(0);
+            var fundCords = this.chooseCell(0);
             var cord = random(fundCords);
             if (cord) {
                 var x = cord[0];
@@ -47,13 +57,10 @@ class Grass {
         }
     }
 }
-class Eatgrass {
+class Eatgrass extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.multiply = 0;
+        super(x, y);
         this.energy = 15;
-        this.directions = [];
     }
     newDirections() {
         this.directions = [
@@ -68,24 +75,16 @@ class Eatgrass {
         ];
     }
 
-    getDirections(t) {
+    chooseCell(ch) {
         this.newDirections();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
-                }
-            }
+        return super.chooseCell(ch);
         }
-        return found;
-    }
+            
+
 
 
     move() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -99,7 +98,7 @@ class Eatgrass {
         }
     }
     eat() {
-        var fundCords = this.getDirections(1);
+        var fundCords = this.chooseCell(1);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -131,7 +130,7 @@ class Eatgrass {
         }
     }
     mul() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -154,13 +153,10 @@ class Eatgrass {
 }
 
 
-class Predator {
+class Predator extends LivingCreature {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.multiply = 0;
+        super(x,y);
         this.energy = 14;
-        this.directions = [];
     }
     newDirections() {
         this.directions = [
@@ -175,24 +171,15 @@ class Predator {
         ];
     }
 
-    getDirections(t) {
+    chooseCell(ch) {
         this.newDirections();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(ch);
     }
 
 
+
     move() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -206,7 +193,7 @@ class Predator {
         }
     }
     eat() {
-        var fundCords = this.getDirections(2);
+        var fundCords = this.chooseCell(2);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -238,7 +225,7 @@ class Predator {
         }
     }
     mul() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -259,13 +246,10 @@ class Predator {
         }
     }
 }
-class Omnivorous {
+class Omnivorous extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.multiply = 0;
+        super(x,y);
         this.energy = 13;
-        this.directions = [];
     }
     newDirections() {
         this.directions = [
@@ -297,24 +281,15 @@ class Omnivorous {
         ];
     }
 
-    getDirections(t) {
+    chooseCell(ch) {
         this.newDirections();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(ch);
     }
 
 
+
     move() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -328,8 +303,8 @@ class Omnivorous {
         }
     }
     eat() {
-        var fundCords = this.getDirections(2);
-        var fundCords1 = this.getDirections(3);
+        var fundCords = this.chooseCell(2);
+        var fundCords1 = this.chooseCell(3);
         var fundCords2 = fundCords.concat(fundCords1);
         var cord = random(fundCords2);
         if (cord) {
@@ -372,7 +347,7 @@ class Omnivorous {
         }
     }
     mul() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -394,13 +369,10 @@ class Omnivorous {
     }
 }
 
-class Alien {
+class Alien extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.multiply = 0;
+        super(x,y);
         this.energy = 15;
-        this.directions = [];
     }
     newDirections() {
         this.directions = [
@@ -431,24 +403,15 @@ class Alien {
         ];
     }
 
-    getDirections(t) {
+    chooseCell(ch) {
         this.newDirections();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(ch);
     }
 
 
+
     move() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
 
         if (cord) {
@@ -462,7 +425,7 @@ class Alien {
         }
     }
     eat() {
-        var fundCords = this.getDirections(4);
+        var fundCords = this.chooseCell(4);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
@@ -494,7 +457,7 @@ class Alien {
         }
     }
     mul() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
         if (cord) {
             var x = cord[0];
