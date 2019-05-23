@@ -1,15 +1,26 @@
 {
-  "name": "mypack",
+  "name": "gameoflife",
   "version": "1.0.0",
-  "description": "Game of Life",
-  "main": "index.js",
+  "description": "",
+  "main": "LivingCreature.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev":"nodemon server.js"
   },
-  "author": "Sargis Manasyan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surnatur/prog3.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/surnatur/prog3/issues"
+  },
+  "homepage": "https://github.com/surnatur/prog3#readme",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.0",
+    "nodemon": "^1.19.0",
     "socket.io": "^2.2.0"
   }
 }
